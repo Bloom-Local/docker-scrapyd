@@ -17,7 +17,8 @@ ARG PILLOW_VERSION=9.2.0
 SHELL ["/bin/bash", "-c"]
 
 RUN set -xe \
-    && echo ${TARGETPLATFORM} \
+    && echo ${TARGETPLATFORM} 
+RUN echo "Acquire::Check-Valid-Until \"false\";\nAcquire::Check-Date \"false\";" | cat > /etc/apt/apt.conf.d/10no--check-valid-until \
     && apt-get update \
     && apt-get install -y autoconf \
                           build-essential \
